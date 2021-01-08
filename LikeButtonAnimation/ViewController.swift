@@ -9,7 +9,11 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let likeButton = LikeButton()
+    let likeButton : LikeButton = {
+        let button = LikeButton()
+        button.addTarget(self, action: #selector(handleLikeButton), for: .touchUpInside)
+        return button
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +29,10 @@ class ViewController: UIViewController {
         likeButton.translatesAutoresizingMaskIntoConstraints = false
         likeButton.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         likeButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+    }
+    
+    @objc func handleLikeButton() {
+        likeButton.flipLikeState()
     }
     
 }
